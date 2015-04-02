@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Example</title>
+		<script type="text/javascript">
+			sayHello = function(){
+				alert("Hello, Jonathan!");
+			}
+			document.addEventListener('click',sayHello);
+			changeBackgroundColor = function(){
+				document.body.style.background = "blue";
+			}
+			document.addEventListener('DOMContentLoaded',changeBackgroundColor);
+		</script>
+	</head>
+	<body style="background:lightblue">
+		<div style="background:maroon;font-size:40px">
+			Hello, how are you?
+		</div>
+		<div style="background:yellow;font-size:30px">
+			I'm doing great, thank you!
+		</div>
+		<div>
+			<button>click me</button>
+		</div>
+		
+	</body>
+</html>
