@@ -7,27 +7,41 @@
 		var Game = {
 			canvas : undefined,
 			canvasContext : undefined,
-			rectanglePosition: 0
+			rectangleXPosition: 0,
+			rectangleYPosition: 0,
+			isMouseOn: false
 		}
 
 		Game.start = function(){
 			Game.canvas = document.getElementById('mycanvas');
 			Game.canvasContext = Game.canvas.getContext('2d');
+
+			Game.canvas.addEventListener('mouseover',Game.setMouseOn);
+			Game.canvas.addEventListener('mouseout',Game.setMouseOff);
+			Game.canvas.addEventListener('mousemove',Game.setMouseCoords);
+
 			Game.mainloop();
 		}
 
 		document.addEventListener('DOMContentLoaded',Game.start);
 
 		Game.update = function(){
-			var d = new Date();
-			var timeNow = d.getTime();
-			Game.rectanglePosition = timeNow % Game.canvas.width;
+			//if (Game.isMouseOn){
+			//	Game.rectangleYPosition = Game.canvas.height / 2;
+			//	Game.rectangleXPosition = Game.canvas.width / 2;
+			//} else {
+			if (!Game.isMouseOn){	
+				var d = new Date();
+				var timeNow = d.getTime();
+				Game.rectangleYPosition = Math.random() * Game.canvas.height;
+				Game.rectangleXPosition = timeNow % Game.canvas.width;
+			}
 
 		}
 
 		Game.draw = function(){
 			Game.canvasContext.fillStyle = 'blue';
-			Game.canvasContext.fillRect(Game.rectanglePosition,100,50,50);
+			Game.canvasContext.fillRect(Game.rectangleXPosition,Game.rectangleYPosition,50,50);
 
 		}
 
@@ -40,6 +54,17 @@
 
 		Game.clearCanvas = function(){
 			Game.canvasContext.clearRect(0,0,Game.canvas.width,Game.canvas.height);
+		}
+
+		Game.setMouseOn = function(e){
+			Game.isMouseOn = true;
+		}
+		Game.setMouseOff = function(e){
+			Game.isMouseOn = false;
+		}
+		Game.setMouseCoords = function(e){
+			Game.rectangleXPosition = e.x - 35;
+			Game.rectangleYPosition = e.y - 35;
 		}
 		/*
 			changeCanvasColor = function(){
