@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Example</title>
+		<script type="text/javascript">
+		"use strict";
+		var Game = {
+			canvas : undefined,
+			canvasContext : undefined,
+			rectanglePosition: 0
+		}
+
+		Game.start = function(){
+			Game.canvas = document.getElementById('mycanvas');
+			Game.canvasContext = Game.canvas.getContext('2d');
+			Game.mainloop();
+		}
+
+		document.addEventListener('DOMContentLoaded',Game.start);
+
+		Game.update = function(){
+			var d = new Date();
+			var timeNow = d.getTime();
+			Game.rectanglePosition = timeNow % Game.canvas.width;
+
+		}
+
+		Game.draw = function(){
+			Game.canvasContext.fillStyle = 'blue';
+			Game.canvasContext.fillRect(Game.rectanglePosition,100,50,50);
+
+		}
+
+		Game.mainloop = function(){
+			Game.clearCanvas();
+			Game.update();
+			Game.draw();
+			window.setTimeout(Game.mainloop,1000/60);
+		}
+
+		Game.clearCanvas = function(){
+			Game.canvasContext.clearRect(0,0,Game.canvas.width,Game.canvas.height);
+		}
+		/*
+			changeCanvasColor = function(){
+				var canvas = document.getElementById('mycanvas');
+				var context = canvas.getContext('2d');
+				context.fillStyle = 'blue';
+				context.fillRect(10, 10, canvas.width-20, canvas.height-20);
+			}
+			document.addEventListener('DOMContentLoaded',changeCanvasColor);
+			*/
+		</script>
+	</head>
+	<body style="background:lightblue">
+		<div id="gameArea">
+			<canvas id="mycanvas" width="800" height="480"></canvas>
+		</div>
+	</body>
+</html>

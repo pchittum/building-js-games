@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Example</title>
+		<script type="text/javascript">
+		var canvas = undefined;
+		var canvasContext = undefined;
+
+		function start(){
+			canvas = document.getElementById('mycanvas');
+			canvasContext = canvas.getContext('2d');
+			mainloop();
+		}
+
+		document.addEventListener('DOMContentLoaded',start);
+
+		function update(){
+
+		}
+
+		function draw(){
+
+		}
+
+		function mainloop(){
+			canvasContext.fillStyle = 'gray';
+			canvasContext.fillRect(0,0,canvas.width,canvas.height);
+			update();
+			draw();
+			window.setTimeout(mainloop,1000/60);
+		}
+
+		/*
+			changeCanvasColor = function(){
+				var canvas = document.getElementById('mycanvas');
+				var context = canvas.getContext('2d');
+				context.fillStyle = 'blue';
+				context.fillRect(10, 10, canvas.width-20, canvas.height-20);
+			}
+			document.addEventListener('DOMContentLoaded',changeCanvasColor);
+			*/
+		</script>
+	</head>
+	<body style="background:lightblue">
+		<div id="gameArea">
+			<canvas id="mycanvas" width="800" height="480"></canvas>
+		</div>
+	</body>
+</html>
